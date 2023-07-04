@@ -2,11 +2,13 @@ const express= require ("express");
 require('dotenv').config();
 require('./helpers/init_mongodb')
 const app =express();
-const routes =require('./routes/student.routes')
-const routes2=require('./routes/auth.route')
-app.use(express.json())
-app.use('/auth',routes2)
-app.use('/student',routes);
+
+const studentRoutes =require('./routes/student.routes')
+app.use(express.json());
+const authRoutes=require('./routes/auth.route')
+
+app.use('/auth',authRoutes)
+app.use('/student',studentRoutes);
 app.use((req,res,next)=>{
     const err =new Error("not found"); 
     err.status=404; 

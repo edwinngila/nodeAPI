@@ -2,9 +2,8 @@ const express= require ("express");
 require('dotenv').config();
 require('./helpers/init_mongodb')
 const app =express();
-
-const studentRoutes =require('./routes/student.routes')
 app.use(express.json());
+const studentRoutes =require('./routes/student.routes')
 const authRoutes=require('./routes/auth.route')
 
 app.use('/auth',authRoutes)

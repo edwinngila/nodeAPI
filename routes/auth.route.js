@@ -21,8 +21,16 @@ routes.post('/register',async(req,res,next)=>{
     }
    
 });
-routes.get('/login',(res,req,next)=>{
-    req.send({type:"login is successful"})
+routes.get('/login',async(req,res,next)=>{
+    // req.send({type:"login is successful"})
+   try{
+    const result = await Users.find();
+    res.send(result);
+   }
+   catch(error){
+    console.log(error.message)
+    next(error)
+   }
 });
 routes.delete('/userDelete',(req,res,next)=>{
     res.send({type:"user has been deleted"})
